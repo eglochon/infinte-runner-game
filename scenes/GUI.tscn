@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://p6h1n0y88jc2"]
+
+[ext_resource type="Script" uid="uid://dl5hjjyoofpn4" path="res://scripts/GUI.gd" id="1_5j4t3"]
+[ext_resource type="FontFile" uid="uid://6bt30rwjod6r" path="res://assets/fonts/PixelOperator8.ttf" id="2_5j4t3"]
+[ext_resource type="Texture2D" uid="uid://c31u8ogfy6hhi" path="res://assets/sprites/coin1.png" id="2_shsct"]
+[ext_resource type="Texture2D" uid="uid://gyo67ge2teea" path="res://assets/sprites/air_jump.png" id="4_shsct"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shsct"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jbthi"]
+font = ExtResource("2_5j4t3")
+font_size = 8
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_5j4t3")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_shsct")
+
+[node name="VBox" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxScore" type="HBoxContainer" parent="PanelContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBox/HBoxScore"]
+clip_contents = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("2_shsct")
+expand_mode = 1
+
+[node name="Score" type="Label" parent="PanelContainer/VBox/HBoxScore"]
+layout_mode = 2
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_jbthi")
+
+[node name="HBoxJumps" type="HBoxContainer" parent="PanelContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBox/HBoxJumps"]
+clip_contents = true
+custom_minimum_size = Vector2(16, 24)
+layout_mode = 2
+texture = ExtResource("4_shsct")
+expand_mode = 1
+
+[node name="Jumps" type="Label" parent="PanelContainer/VBox/HBoxJumps"]
+layout_mode = 2
+text = "Air Jumps: 0"
+label_settings = SubResource("LabelSettings_jbthi")

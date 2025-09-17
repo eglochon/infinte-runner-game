@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://deq13s6sa1el1"]
+
+[ext_resource type="PackedScene" uid="uid://ju6ts1galxss" path="res://scenes/Parallax.tscn" id="2_hlk0d"]
+[ext_resource type="PackedScene" uid="uid://dcxplp5qymb2p" path="res://scenes/Player.tscn" id="4_hlk0d"]
+[ext_resource type="Script" uid="uid://b2i6pbn1biy02" path="res://scripts/PlatformSpawner.gd" id="6_hlk0d"]
+[ext_resource type="PackedScene" uid="uid://p6h1n0y88jc2" path="res://scenes/GUI.tscn" id="7_0uv0p"]
+[ext_resource type="Script" uid="uid://bhnmcuu02t" path="res://scripts/World.gd" id="7_b3faq"]
+[ext_resource type="PackedScene" uid="uid://bkxk6pppmbas3" path="res://scenes/GameOver.tscn" id="8_b3faq"]
+
+[node name="World" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("7_b3faq")
+player = NodePath("Player")
+
+[node name="Parallax" parent="." instance=ExtResource("2_hlk0d")]
+
+[node name="Player" parent="." instance=ExtResource("4_hlk0d")]
+position = Vector2(64, 176)
+
+[node name="PlatformSpawner" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("6_hlk0d")
+player = NodePath("../Player")
+
+[node name="GUI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_0uv0p")]
+player = NodePath("../Player")
+
+[node name="GameOver" parent="." instance=ExtResource("8_b3faq")]
+
+[connection signal="gameover" from="PlatformSpawner" to="." method="_on_gameover"]
+[connection signal="mainmenu" from="GameOver" to="." method="_on_mainmenu"]
+[connection signal="reset" from="GameOver" to="." method="_on_reset"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dul7cvkoroi4c"]
+
+[ext_resource type="TileSet" uid="uid://drifbfb8qcwfe" path="res://resources/TileSet.tres" id="1_motb6"]
+[ext_resource type="Script" uid="uid://c0v1nx70fok0f" path="res://scripts/Platform.gd" id="2_wwpbi"]
+
+[node name="Platform" type="TileMapLayer"]
+tile_set = ExtResource("1_motb6")
+script = ExtResource("2_wwpbi")
