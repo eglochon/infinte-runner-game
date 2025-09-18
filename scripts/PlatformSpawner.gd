@@ -26,7 +26,7 @@ func reset() -> void:
 		platform.reset()
 
 func _physics_process(_delta: float) -> void:
-	if player.position.x < -100 or player.position.y > 256:
+	if player.position.x < -20.0 or player.position.y > 256.0:
 		emit_signal("gameover")
 
 	for platform in platform_pool:

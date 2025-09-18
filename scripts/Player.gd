@@ -8,6 +8,8 @@ class_name Player
 const JUMP_VELOCITY: float = -300.0
 const JUMP_CUTOFF_MULTIPLIER: float = 1.5
 
+var target_x := 64.0
+
 var airjump_max: int = 1
 var airjump_current: int = 0
 
@@ -27,6 +29,10 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 	else:
 		airjump_current = 0
+
+	# Move to correct position:
+	position.x = lerp(position.x, target_x, 10 * delta)
+	velocity.x = 0
 
 	# Jump start (floor or air jump)
 	if key_jump_pressed:
