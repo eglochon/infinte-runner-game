@@ -7,6 +7,7 @@ signal powerup
 
 func reset() -> void:
 	score = 0
+	powerups = 0
 
 func add_score() -> void:
 	score += 1

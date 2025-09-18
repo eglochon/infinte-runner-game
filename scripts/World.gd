@@ -4,6 +4,7 @@ extends Node2D
 @onready var main_scene: PackedScene = load("res://scenes/Main.tscn")
 @onready var game_canvas: CanvasLayer = $GUI
 @onready var game_over_canvas: GameOverGUI = $GameOver
+@onready var spawner: PlatformSpawner = $PlatformSpawner
 
 func _on_gameover() -> void:
 	game_canvas.hide()
@@ -13,6 +14,7 @@ func _on_gameover() -> void:
 func _on_reset() -> void:
 	await get_tree().create_timer(0.1).timeout
 	Game.reset()
+	spawner.reset()
 	get_tree().paused = false
 	game_canvas.show()
 	game_over_canvas.hide()

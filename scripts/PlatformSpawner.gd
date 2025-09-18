@@ -1,4 +1,5 @@
 extends Node
+class_name PlatformSpawner
 
 @export var player: Player
 
@@ -19,6 +20,10 @@ func _ready() -> void:
 		platform_pool.append(plarform_tmp)
 		add_child(plarform_tmp)
 		platform_last_placed = plarform_tmp
+
+func reset() -> void:
+	for platform in platform_pool:
+		platform.reset()
 
 func _physics_process(_delta: float) -> void:
 	if player.position.x < -100 or player.position.y > 256:

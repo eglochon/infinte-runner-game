@@ -1,13 +1,22 @@
 extends TileMapLayer
 class_name Platform
 
-var speed: int = 100
+var speed: float = 100.0
 var size: int = 1
 var level: int = 0
 @onready var coin: PackedScene = preload("res://scenes/Coin.tscn")
 var coins: Array[Coin] = []
 
+func reset() -> void:
+	speed = 100.0
+	size = 1
+	level = 0
+	for icoin in coins:
+		icoin.queue_free()
+	coins.clear()
+
 func _physics_process(delta: float) -> void:
+	speed += delta
 	if visible:
 		position.x -= speed * delta
 
